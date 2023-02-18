@@ -5,7 +5,8 @@ search.addEventListener("click", getSearch);
 
 function getSearch() {
   let username = document.getElementById("input").value;
-  let url = `https://api.github.com/users/${username}/`;
+  console.log(username);
+  let url = `https://api.github.com/users/${username}`;
 
   fetch(url)
     .then((res) => res.json())
