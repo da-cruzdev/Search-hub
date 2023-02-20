@@ -9,7 +9,11 @@ function getSearch() {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      localStorage.setItem("repo", `${data}`);
+      if (!data) {
+        console.log("Utilisateur non-existant!");
+      } else {
+        localStorage.setItem("repositories", JSON.stringify(data));
+      }
     })
     .catch((e) => {
       console.log(e);

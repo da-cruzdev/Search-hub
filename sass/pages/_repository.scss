@@ -1,18 +1,9 @@
-.repos__list {
-  margin-top: 3rem;
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.repos {
+  width: 75%;
+  margin: 5rem auto;
 
-  li {
-    margin-left: 8rem;
-    display: block;
-    width: 70%;
-    height: 6rem;
-    margin: 1rem 0;
-    padding: 0.5rem;
+  &__item {
+    font-size: 1rem;
     border-top: 0.1rem solid $color-gray;
   }
 }
