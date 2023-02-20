@@ -1,9 +1,31 @@
 .repos {
-  width: 75%;
+  width: 73%;
   margin: 5rem auto;
+  position: relative;
 
   &__item {
     font-size: 1rem;
     border-top: 0.1rem solid $color-gray;
+    margin-bottom: 0.6rem;
+  }
+
+  &__name {
+    padding-top: 1.2rem;
+  }
+
+  &__description {
+    width: 70%;
+    font-size: 0.9rem;
+    padding-top: 0.4rem;
+    color: $color-gray;
+  }
+
+  &__date {
+    padding-top: 0.8rem;
+    font-size: 1rem;
+  }
+
+  &__span {
+    font-size: 3rem;
   }
 }

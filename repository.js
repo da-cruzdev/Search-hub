@@ -19,7 +19,7 @@ function createRepoGrid(repos) {
     const gridItem = document.createElement("div");
     gridItem.classList.add("repos__item");
 
-    const name = document.createElement("h2");
+    const name = document.createElement("h3");
     name.classList.add("repos__name");
     name.textContent = repo.full_name;
 
