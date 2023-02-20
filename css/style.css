@@ -22,15 +22,14 @@ body {
 .navbar {
   background-color: #0e68ee;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 5.6rem;
   width: 100%; }
   .navbar__heading {
-    color: #fff;
-    padding-left: 4rem; }
+    color: #fff; }
   .navbar__search {
-    padding-right: 4rem;
+    margin-right: -3rem;
     width: 30%;
     position: relative; }
     .navbar__search input {
@@ -38,11 +37,11 @@ body {
       background-color: transparent;
       border: 0.13rem solid #fff;
       width: 100%;
-      height: 1.8rem; }
+      height: 2rem;
+      padding-left: 4rem; }
       .navbar__search input:focus {
         outline: none;
         color: #fff;
-        text-align: center;
         font-size: 1rem; }
     .navbar__search .fa--nav {
       color: #fff;
@@ -96,8 +95,7 @@ body {
   height: 3.2rem;
   border: 0.1rem solid #0e68ee;
   border-radius: 3rem;
-  padding: 0.2rem;
-  text-align: center;
+  padding: 0 2rem;
   font-size: 1.3rem;
   color: #0e68ee;
   outline: none; }
@@ -116,3 +114,18 @@ body {
   margin-top: 2rem;
   font-size: 1rem;
   color: #777; }
+
+.repos__list {
+  margin-top: 3rem; }
+  .repos__list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  .repos__list li {
+    margin-left: 8rem;
+    display: block;
+    width: 70%;
+    height: 6rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-top: 0.1rem solid #777; }

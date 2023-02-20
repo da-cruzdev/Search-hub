@@ -4,16 +4,12 @@ search.addEventListener("click", getSearch);
 
 function getSearch() {
   let username = document.getElementById("input").value;
-  let url = `https://api.github.com/users/${username}`;
+  let url = `https://api.github.com/users/${username}/repos`;
 
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      if (data.message) {
-        console.log("User not found");
-      } else {
-        console.log(data);
-      }
+      localStorage.setItem("repo", `${data}`);
     })
     .catch((e) => {
       console.log(e);
