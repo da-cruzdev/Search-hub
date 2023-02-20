@@ -19,6 +19,11 @@ function createRepoGrid(repos) {
     const gridItem = document.createElement("div");
     gridItem.classList.add("repos__item");
 
+    const image = document.createElement("img");
+    image.classList.add("repos__img");
+    image.src = "img/_OBJECTS.png";
+    image.alt = "";
+
     const name = document.createElement("h3");
     name.classList.add("repos__name");
     name.textContent = repo.full_name;
@@ -27,12 +32,20 @@ function createRepoGrid(repos) {
     paragraph.classList.add("repos__description");
     paragraph.textContent = repo.description;
 
+    const ellipse = document.createElement("img");
+    ellipse.classList.add("repos__ellipse");
+    ellipse.src = "img/Ellipse 210.png";
+    image.alt = "";
+
     const date = document.createElement("p");
     date.classList.add("repos__date");
-    date.textContent = repo.updated_at;
+    date.textContent = "Updated on " + repo.updated_at;
+
+    gridItem.appendChild(image);
 
     gridItem.appendChild(name);
     gridItem.appendChild(paragraph);
+    gridItem.appendChild(ellipse);
     gridItem.appendChild(date);
 
     container.appendChild(gridItem);

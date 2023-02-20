@@ -9,6 +9,12 @@
     margin-bottom: 0.6rem;
   }
 
+  &__img {
+    width: 1.5rem;
+    float: left;
+    padding-top: 1rem;
+  }
+
   &__name {
     padding-top: 1.2rem;
   }
@@ -16,13 +22,23 @@
   &__description {
     width: 70%;
     font-size: 0.9rem;
-    padding-top: 0.4rem;
+    padding-top: 0.8rem;
+    margin-left: 1rem;
     color: $color-gray;
+  }
+
+  &__ellipse {
+    width: 0.9rem;
+    float: left;
+    position: relative;
+    top: 12px;
   }
 
   &__date {
     padding-top: 0.8rem;
     font-size: 1rem;
+    padding-left: 2rem;
+    color: $color-gray;
   }
 
   &__span {

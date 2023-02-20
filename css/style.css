@@ -148,15 +148,27 @@ body {
     font-size: 1rem;
     border-top: 0.1rem solid #d9d9d9;
     margin-bottom: 0.6rem; }
+  .repos__img {
+    width: 1.5rem;
+    float: left;
+    padding-top: 1rem; }
   .repos__name {
     padding-top: 1.2rem; }
   .repos__description {
     width: 70%;
     font-size: 0.9rem;
-    padding-top: 0.4rem;
+    padding-top: 0.8rem;
+    margin-left: 1rem;
     color: #d9d9d9; }
+  .repos__ellipse {
+    width: 0.9rem;
+    float: left;
+    position: relative;
+    top: 12px; }
   .repos__date {
     padding-top: 0.8rem;
-    font-size: 1rem; }
+    font-size: 1rem;
+    padding-left: 2rem;
+    color: #d9d9d9; }
   .repos__span {
     font-size: 3rem; }
