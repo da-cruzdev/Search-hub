@@ -19,7 +19,7 @@
       border-radius: 5rem;
       background-color: transparent;
       border: 0.13rem solid $color-white;
-      width: 100%;
+      width: 80%;
       height: 2rem;
       padding-left: 4rem;
       color: $color-white;
@@ -31,10 +31,16 @@
       }
     }
     .fa--nav {
-      color: $color-white;
+      width: 2rem;
+      height: 2rem;
+      background: $color-white;
+      text-align: center;
+      padding: 4px 6px 0px 4px;
+      border-radius: 20rem;
+      color: $color-primary;
       position: absolute;
-      top: 5px;
-      left: 5px;
+      top: 0;
+      left: 0.1rem;
       font-size: 90%;
     }
   }

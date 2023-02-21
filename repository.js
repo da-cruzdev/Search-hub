@@ -1,16 +1,17 @@
-const perPage = 20;
-let currentPage = 5;
+const perPage = 50;
+let currentPage = 1;
 
 const accessToken = "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";
 
-function getRepos(page) {
+function getRepos() {
   const urlParams = new URLSearchParams(window.location.search);
   const input = document.getElementById("input");
 
   const search = urlParams.get("search");
 
   input.setAttribute("value", `${search}`);
-  let url = `https://api.github.com/search/repositories?q=${search}`;
+  let url = `https://api.github.com/search/repositories?q=${search}
+  }`;
 
   fetch(url, {
     headers: {
@@ -51,7 +52,7 @@ function getRepos(page) {
       console.log(e);
     });
 }
-getRepos(currentPage);
+getRepos();
 
 function createRepoGrid(repos) {
   const container = document.createElement("div");
