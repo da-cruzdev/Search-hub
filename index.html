@@ -16,7 +16,7 @@
     />
     <title>Search hub</title>
 
-    <link rel="stylesheet" <link rel="stylesheet" href="css/icons-fonts.css" />
+    <link rel="stylesheet" href="css/icons-fonts.css" />
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -24,22 +24,26 @@
     
     <main>
       <div class="container">
-        <div class="search">
+        <form action="http://127.0.0.1:5500/repository.html" id="form" class="search">
           <img src="img/OBJECTS.png" alt="" search__logo>
-          <input type="text" id="input" />
+          
+            <input type="text" id="input" name="search"/>
           <a href="#" id="btn"
             ><i class="fa fa-search" ></i></i
           ></a>
+          
+          
+          
   
           <p class="search__text">
             Utilisateurs Github, les repositories Github et la recherche de code.
           </p>
-        </div>
+        </form>
       </div>
     </main>
     <footer class="footer">
       <div class="footer__content">
-        <h3 class="footer__heading">Search Hub</h3>
+        <img src="./img/__1234567OBJECTS.png" alt="Search Hub" class="footer__logo">
         <p class="footer__copyright"> &copy; 2023 Search hub, inc </p>
       </div>
     </footer>

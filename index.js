@@ -1,10 +1,6 @@
-let search = document.getElementById("btn");
-
-search.addEventListener("click", getSearch);
-
 function getSearch() {
   let username = document.getElementById("input").value;
-  let url = `https://api.github.com/users/${username}/repos`;
+  let url = `https://api.github.com/`;
 
   fetch(url)
     .then((res) => res.json())

@@ -38,11 +38,12 @@ body {
       border: 0.13rem solid #fff;
       width: 100%;
       height: 2rem;
-      padding-left: 4rem; }
+      padding-left: 4rem;
+      color: #fff;
+      font-size: 1rem; }
       .navbar__search input:focus {
         outline: none;
-        color: #fff;
-        font-size: 1rem; }
+        color: #fff; }
     .navbar__search .fa--nav {
       color: #fff;
       position: absolute;
@@ -63,8 +64,8 @@ body {
     width: 75%;
     height: 3rem;
     border-top: 0.1px solid #d9d9d9; }
-  .footer__heading {
-    font-size: 1.6rem; }
+  .footer__logo {
+    width: 10rem; }
   .footer__copyright {
     font-size: 1.1rem;
     margin-left: 4rem; }
@@ -153,7 +154,7 @@ body {
     float: left;
     padding-top: 1rem; }
   .repos__name {
-    padding-top: 1.2rem; }
+    padding-top: 0.9rem; }
   .repos__description {
     width: 70%;
     font-size: 0.9rem;
@@ -170,5 +171,13 @@ body {
     font-size: 1rem;
     padding-left: 2rem;
     color: #d9d9d9; }
-  .repos__span {
-    font-size: 3rem; }
+  .repos__tag {
+    margin-top: 0.8rem; }
+    .repos__tag span {
+      margin-right: 0.5rem;
+      margin-bottom: 0.3rem;
+      font-size: 0.8rem;
+      background-color: #d9d9d9;
+      font-weight: bold;
+      padding: 0.3rem;
+      border-radius: 1rem; }
