@@ -149,6 +149,7 @@ body {
 
 .repos {
   width: 65%;
+  height: 85vh;
   margin: 5rem auto;
   position: relative; }
   .repos__item {
