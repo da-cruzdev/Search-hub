@@ -111,9 +111,9 @@ body {
   position: relative;
   width: 50%; }
 
-.search h1 {
-  font-size: 5rem;
-  color: #0e68ee; }
+.search img {
+  width: 27rem;
+  margin-bottom: 20px; }
 
 .search input {
   width: 110%;
@@ -130,10 +130,10 @@ body {
 
 .fa-search {
   position: absolute;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #0e68ee;
-  right: -15px;
-  top: 100px; }
+  right: -9px;
+  top: 81px; }
 
 .search__text {
   margin-top: 2rem;
@@ -141,7 +141,7 @@ body {
   color: #d9d9d9; }
 
 .repos {
-  width: 73%;
+  width: 65%;
   margin: 5rem auto;
   position: relative; }
   .repos__item {
@@ -158,7 +158,7 @@ body {
     width: 70%;
     font-size: 0.9rem;
     padding-top: 0.8rem;
-    margin-left: 1rem;
+    margin-left: 2rem;
     color: #d9d9d9; }
   .repos__ellipse {
     width: 0.9rem;

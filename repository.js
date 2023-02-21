@@ -7,9 +7,32 @@ console.log(repos);
 const perPage = 5;
 let currentPage = 1;
 
-const repo = createRepoGrid(repos);
-row.appendChild(repo);
-console.log(repo);
+function paginateData(data) {
+  // Paginer les données en fonction de la page actuelle et du nombre de repositories par page
+  const startIndex = (currentPage - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  const paginatedData = data.slice(startIndex, endIndex);
+  const row = document.querySelector(".row");
+
+  // Afficher les données paginées sur la page
+  const repos = createRepoGrid(paginatedData);
+  row.appendChild(repos);
+
+  // Ajouter la pagination
+  const totalCount = Math.ceil(data.length / perPage);
+  let pagination = "";
+  for (let i = 1; i <= totalCount; i++) {
+    pagination += `<li><a href="#" onclick="changePage(${i})">${i}</a></li>`;
+  }
+  document.querySelector("#pagination").innerHTML = pagination;
+}
+
+function changePage(page) {
+  currentPage = page;
+  const storedRepos = localStorage.getItem("repositories");
+  const repos = JSON.parse(storedRepos);
+  paginateData(repos);
+}
 
 function createRepoGrid(repos) {
   const container = document.createElement("div");
