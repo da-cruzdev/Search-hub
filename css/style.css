@@ -188,3 +188,7 @@ body {
       font-weight: bold;
       padding: 0.3rem;
       border-radius: 1rem; }
+  .repos__count {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-style: italic; }

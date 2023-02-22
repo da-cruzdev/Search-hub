@@ -1,63 +1,63 @@
-const perPage = 50;
-let currentPage = 1;
+let perPage = 1;
+let currentPage = 5;
 
 const accessToken = "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";
 
-function getRepos() {
+async function getGithubRepos(pageNumber, pageSize) {
   const urlParams = new URLSearchParams(window.location.search);
   const input = document.getElementById("input");
 
   const search = urlParams.get("search");
 
   input.setAttribute("value", `${search}`);
-  let url = `https://api.github.com/search/repositories?q=${search}
-  }`;
+  const url = `https://api.github.com/search/repositories?q=${search}&page=${pageNumber}&per_page=${pageSize}&sort=stars&order=DESC`;
 
-  fetch(url, {
-    headers: {
-      Authorization: `token ${accessToken}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      const row = document.querySelector(".row");
-      const repos = createRepoGrid(data.items);
-      row.appendChild(repos);
-
-      console.log(data);
-      const totalCount = parseInt(
-        res.headers.get("link").match(/page=(\d+)>; rel="last"/)[1]
-      );
-      const pagination = document.createElement("ul");
-      for (let i = 1; i <= totalCount; i++) {
-        const li = document.createElement("li");
-        const link = document.createElement("a");
-        link.href = "#";
-        link.innerText = i;
-        if (i === currentPage) {
-          link.className = "active";
-        }
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          currentPage = i;
-          getRepos(currentPage);
-        });
-        li.appendChild(link);
-        pagination.appendChild(li);
-        console.log(pagination);
-      }
-      document.querySelector(".row").appendChild(pagination);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  return data;
 }
-getRepos();
 
-function createRepoGrid(repos) {
+async function showGitHubReposTable(pageNumber, pageSize) {
+  const data = await getGithubRepos(pageNumber, pageSize);
+  console.log(data);
+  const row = document.querySelector(".row");
+  const repos = createRepoGrid(data.items, data.total_count);
+  row.appendChild(repos);
+
+  const paginationContainer = document.createElement("div");
+  paginationContainer.classList.add("pagination");
+  const previousButton = document.createElement("button");
+  previousButton.innerText = "<";
+  previousButton.disabled = pageNumber === 1;
+  previousButton.addEventListener("click", () => {
+    showGitHubReposTable(pageNumber - 1, pageSize);
+  });
+  paginationContainer.appendChild(previousButton);
+  const pageNumberSpan = document.createElement("span");
+  pageNumberSpan.innerText = ` ${pageNumber} `;
+  paginationContainer.appendChild(pageNumberSpan);
+  const nextButton = document.createElement("button");
+  nextButton.innerText = ">";
+  nextButton.disabled = data.length < pageSize;
+  nextButton.addEventListener("click", () => {
+    showGitHubReposTable(pageNumber + 1, pageSize);
+  });
+  paginationContainer.appendChild(nextButton);
+
+  document.querySelector(".section-repos").appendChild(paginationContainer);
+}
+
+showGitHubReposTable(perPage, currentPage);
+
+function createRepoGrid(repos, total_count) {
+  console.log(total_count);
   const container = document.createElement("div");
   container.classList.add("repos");
-  container.textContent = repos.totalCount;
+  const totalRepo = document.createElement("p");
+  totalRepo.classList.add("repos__count");
+  totalRepo.innerText = total_count + " repository results";
+  container.appendChild(totalRepo);
 
   for (const repo of repos) {
     const gridItem = document.createElement("div");

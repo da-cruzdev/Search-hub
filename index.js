@@ -1,6 +1,6 @@
 function getSearch() {
   let username = document.getElementById("input").value;
-  let url = `https://api.github.com/gists/public`;
+  let url = `https://api.github.com/`;
   const accessToken = "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";
 
   fetch(url, {
