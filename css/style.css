@@ -102,6 +102,10 @@ body {
   .row .col-3-of-4 {
     width: calc( 3 * ((100% - 3 * 6rem) / 3) + 2 * 6rem); }
 
+.pagination {
+  height: 2rem;
+  float: right; }
+
 .container {
   margin-top: 2rem;
   display: flex;
