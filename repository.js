@@ -1,8 +1,6 @@
 let currentPage = 1;
 let perPage = 10;
-const defaultPageSize = 10;
-const pageSize = urlParams.get("pageSize") || defaultPageSize;
-console.log(pageSize);
+
 const urlParams = new URLSearchParams(window.location.search);
 const input = document.getElementById("input");
 
@@ -26,7 +24,7 @@ function createPaginationButtons(currentPage, totalPages, onPageChange) {
   window.history.pushState({}, null, `?search=${search}&page=${currentPage}`);
 
   const paginationContainer = document.createElement("div");
-  paginationContainer.classList.add("pagination");
+  paginationContainer.classList.add("pagination__btn");
 
   const firstPage = Math.max(1, currentPage - 5);
   const lastPage = Math.min(totalPages, firstPage + 9);
@@ -80,11 +78,17 @@ async function showGitHubReposTable() {
     content += `
       <div class="repos__item">
         <img src="./img/_OBJECTS.png" alt="" class="repos__img">
-        <a href="http://127.0.0.1:5500/repository_content.html?search=${search}&repo=${repo.full_name}"><h3 class="repos__name">${repo.full_name}</h3></a>
+        <a href="http://127.0.0.1:5500/repository_content.html?search=${search}&username=${
+      repo.full_name.split("/")[0]
+    }&repo=${repo.full_name}" class="repos__link"><h3 class="repos__name">${
+      repo.full_name
+    }</h3></a>
         <p class="repos__description">${repo.description}</p>
         <div class="repos__tag"></div>
         <img src="./img/Ellipse 210.png" alt="" class="repos__ellipse">
-        <p class="repos__date">${repo.language} ${repo.license}  Updated on ${repo.updated_at}</p>
+        <p class="repos__date">${repo.language} ${repo.license}  Updated on ${
+      repo.updated_at
+    }</p>
       </div>
     `;
   });
@@ -96,7 +100,8 @@ async function showGitHubReposTable() {
     totalPages,
     onPageChange
   );
-  const existingPaginationContainer = document.querySelector(".pagination");
+  const existingPaginationContainer =
+    document.querySelector(".pagination__btn");
   if (existingPaginationContainer) {
     existingPaginationContainer.replaceWith(paginationContainer);
   } else {
@@ -113,6 +118,7 @@ perPageInput.addEventListener("change", () => {
     showGitHubReposTable();
   }
 });
+showGitHubReposTable();
 
 function onPageChange(pageNumber) {
   currentPage = pageNumber;

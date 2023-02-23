@@ -1,13 +1,17 @@
 .repocontent {
   width: 65%;
   margin: 5rem auto;
+  margin-top: 15rem;
 
   &__item {
+    margin-top: -1px;
     font-size: 1rem;
-    border: 0.1rem solid $color-gray;
+    border: 0.15rem solid #b3b0b0;
+    border-radius: 1px;
     display: flex;
     align-items: center;
     height: 5rem;
+    position: relative;
   }
   &__img {
     width: 3rem;
@@ -24,10 +28,12 @@
     font-size: 1rem;
     margin-top: 0.5rem;
     margin-left: 0.5rem;
+    position: absolute;
+    left: 3.4rem;
   }
 
   &__size {
     position: absolute;
-    right: 336px;
+    right: 1rem;
   }
 }

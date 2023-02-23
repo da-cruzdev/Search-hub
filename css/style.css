@@ -109,7 +109,26 @@ body {
 
 .pagination {
   height: 2rem;
-  float: right; }
+  float: right;
+  display: flex;
+  margin-right: 2rem; }
+  .pagination__btn {
+    width: 40%;
+    position: relative;
+    right: -45rem; }
+    .pagination__btn button {
+      border: transparent;
+      border-radius: 20.1px;
+      width: 30px;
+      height: 30px; }
+      .pagination__btn button disabled {
+        background-color: #b3b0b0; }
+      .pagination__btn button:hover {
+        cursor: pointer;
+        background-color: #0e68ee;
+        color: #fff; }
+    .pagination__btn > :not(:last-child) {
+      margin-right: 1rem; }
 
 .container {
   margin-top: 2rem;
@@ -158,13 +177,17 @@ body {
 
 .repocontent {
   width: 65%;
-  margin: 5rem auto; }
+  margin: 5rem auto;
+  margin-top: 15rem; }
   .repocontent__item {
+    margin-top: -1px;
     font-size: 1rem;
-    border: 0.1rem solid #b3b0b0;
+    border: 0.15rem solid #b3b0b0;
+    border-radius: 1px;
     display: flex;
     align-items: center;
-    height: 5rem; }
+    height: 5rem;
+    position: relative; }
   .repocontent__img {
     width: 3rem;
     float: left;
@@ -175,10 +198,12 @@ body {
   .repocontent__name {
     font-size: 1rem;
     margin-top: 0.5rem;
-    margin-left: 0.5rem; }
+    margin-left: 0.5rem;
+    position: absolute;
+    left: 3.4rem; }
   .repocontent__size {
     position: absolute;
-    right: 336px; }
+    right: 1rem; }
 
 .repos {
   width: 65%;
@@ -189,12 +214,20 @@ body {
     font-size: 1rem;
     border-top: 0.1rem solid #b3b0b0;
     margin-bottom: 0.6rem; }
+    .repos__item:hover {
+      background-color: #eff2f3; }
   .repos__img {
     width: 1.5rem;
     float: left;
     padding-top: 1rem; }
+  .repos__link {
+    text-decoration: none;
+    color: #000; }
+    .repos__link:hover {
+      text-decoration: underline; }
   .repos__name {
-    padding-top: 0.9rem; }
+    padding-top: 0.9rem;
+    padding-left: 0.5rem; }
   .repos__description {
     width: 70%;
     font-size: 0.9rem;

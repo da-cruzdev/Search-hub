@@ -1,4 +1,33 @@
 .pagination {
   height: 2rem;
   float: right;
+  display: flex;
+  margin-right: 2rem;
+
+  &__btn {
+    width: 40%;
+    position: relative;
+    right: -45rem;
+
+    & button {
+      border: transparent;
+      border-radius: 20.1px;
+      width: 30px;
+      height: 30px;
+
+      & disabled {
+        background-color: $color-gray;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $color-primary;
+        color: $color-white;
+      }
+    }
+
+    & > :not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
 }

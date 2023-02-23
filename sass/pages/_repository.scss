@@ -8,6 +8,10 @@
     font-size: 1rem;
     border-top: 0.1rem solid $color-gray;
     margin-bottom: 0.6rem;
+
+    &:hover {
+      background-color: rgb(239, 242, 243);
+    }
   }
 
   &__img {
@@ -16,8 +20,18 @@
     padding-top: 1rem;
   }
 
+  &__link {
+    text-decoration: none;
+    color: $color-black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &__name {
     padding-top: 0.9rem;
+    padding-left: 0.5rem;
   }
 
   &__description {
