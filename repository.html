@@ -5,43 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Repository</title>
-    <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
     />
-                
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-
-      <nav class="navbar">
-        <div class="navbar__heading">
-          <a href="index.html"><img src="./img/OBJECTS1.png" alt="Search Hub"></a>
-        </div>
-        <div class="navbar__search">
-            <input type="text" id="input" />
-            <i class="fa fa-search fa--nav" ></i>
-          
-        </div>
-      </nav>
-      <main>
-        <section class="section-repos">
-          <div class="row">
-            
+    <nav class="navbar">
+      <div class="navbar__heading">
+        <a href="index.html"
+          ><img src="./img/OBJECTS1.png" alt="Search Hub"
+        /></a>
+      </div>
+      <div class="navbar__search">
+        <input type="text" id="input" />
+        <i class="fa fa-search fa--nav"></i>
+      </div>
+    </nav>
+    <main>
+      <section class="section-repos">
+        <div class="row">
+          <div class="repos">
+            <p class="repos__count"></p>
           </div>
-
-          </div></div>
-          
-        </section>
-      </main>
-      <footer class="footer">
-        <div class="footer__content">
-          <img src="./img/__1234567OBJECTS.png" alt="Search Hub" class="footer__logo">
-          <p class="footer__copyright"> &copy; 2023 Search hub, inc </p>
         </div>
-      </footer>
-      
-<script src="repository.js"></script>
+      </section>
+      <!-- Ajouter ce formulaire à votre page -->
+      <form>
+        <select id="per-page" name="per-page">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </form>
+    </main>
+    <footer class="footer">
+      <div class="footer__content">
+        <img
+          src="./img/__1234567OBJECTS.png"
+          alt="Search Hub"
+          class="footer__logo"
+        />
+        <p class="footer__copyright">&copy; 2023 Search hub, inc</p>
+      </div>
+    </footer>
+
+    <script src="repository.js"></script>
   </body>
 </html>

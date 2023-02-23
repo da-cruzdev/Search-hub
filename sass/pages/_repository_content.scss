@@ -1,0 +1,33 @@
+.repocontent {
+  width: 65%;
+  margin: 5rem auto;
+
+  &__item {
+    font-size: 1rem;
+    border: 0.1rem solid $color-gray;
+    display: flex;
+    align-items: center;
+    height: 5rem;
+  }
+  &__img {
+    width: 3rem;
+    float: left;
+    margin-left: 1rem;
+
+    &--file {
+      width: 1.5rem;
+      margin-left: 1.5rem;
+    }
+  }
+
+  &__name {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  &__size {
+    position: absolute;
+    right: 336px;
+  }
+}

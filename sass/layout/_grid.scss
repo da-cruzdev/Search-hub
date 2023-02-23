@@ -3,6 +3,10 @@
 
   margin: 0 auto;
 
+  &.u-row-small {
+    max-width: $grid-width-small;
+  }
+
   &:not(:last-child) {
     margin-bottom: $gutter-vertical;
   }
