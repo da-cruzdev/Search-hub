@@ -18,8 +18,6 @@ async function getGithubRepos(pageNumber, pageSize) {
   return data;
 }
 
-const row = document.querySelector(".repos");
-
 function createPaginationButtons(currentPage, totalPages, onPageChange) {
   window.history.pushState({}, null, `?search=${search}&page=${currentPage}`);
 
@@ -71,28 +69,24 @@ async function showGitHubReposTable() {
   console.log(data);
 
   const repos = data.items;
-  let content = "";
+  document.querySelector(
+    ".repos__count"
+  ).innerHTML = `${data.total_count} repositories results`;
 
   repos.forEach((repo) => {
     console.log(repo);
-    content += `
-      <div class="repos__item">
-        <img src="./img/_OBJECTS.png" alt="" class="repos__img">
-        <a href="http://127.0.0.1:5500/repository_content.html?search=${search}&username=${
-      repo.full_name.split("/")[0]
-    }&repo=${repo.full_name}" class="repos__link"><h3 class="repos__name">${
-      repo.full_name
-    }</h3></a>
-        <p class="repos__description">${repo.description}</p>
-        <div class="repos__tag"></div>
-        <img src="./img/Ellipse 210.png" alt="" class="repos__ellipse">
-        <p class="repos__date">${repo.language} ${repo.license}  Updated on ${
-      repo.updated_at
-    }</p>
-      </div>
-    `;
+    document.querySelector(".repos").innerHTML += createRepoGrid(repo);
+    if (repo.topics) {
+      repo.topics.forEach((el) => {
+        document
+          .getElementById(`${repo.id}`)
+          .querySelector(`.repos__tag`).innerHTML += repoTag(el);
+      });
+    }
+
+    // console.log(document.getElementById(`${repo.id}`));
   });
-  document.querySelector(".repos").innerHTML = content;
+  //  = content;
 
   const totalPages = Math.ceil(data.total_count / perPage);
   const paginationContainer = createPaginationButtons(
@@ -125,60 +119,28 @@ function onPageChange(pageNumber) {
   showGitHubReposTable();
 }
 
-function createRepoGrid(repos, total_count) {
-  console.log(total_count);
-  const container = document.createElement("div");
-  container.classList.add("repos");
-  const totalRepo = document.createElement("p");
-  totalRepo.classList.add("repos__count");
-  totalRepo.innerText = total_count + " repository results";
-  container.appendChild(totalRepo);
+function createRepoGrid(repo) {
+  return `
+  <div class="repos__item" id="${repo.id}">
+    <div class="repos__heading">
+      <img src="/img/_OBJECTS.png" alt="" class="repos__img" />
+      <a href="repository_content.html?search=${search}&username=${
+    repo.full_name.split("/")[0]
+  }&repo=${repo.full_name}" class="repos__link"">${repo.full_name}</a>
+    </div>
+    <div class="repos__description">${repo.description || ""}</div>
+    <div class="repos__tag"></div>
+    <div class="repos__info">
+     <img src="/img/Ellipse 210.png" alt="" class="repos__ellipse"/>
+     <div class="repos__lang">${repo.language || ""}</div>
+     <div class="repos__license">${repo.license.name || ""}</div>
+     <div class="repos__date">Updated on ${repo.updated_at}</div>
+    </div>
+  </div>`;
+}
 
-  for (const repo of repos) {
-    const gridItem = document.createElement("div");
-    gridItem.classList.add("repos__item");
-
-    const image = document.createElement("img");
-    image.classList.add("repos__img");
-    image.src = "img/_OBJECTS.png";
-    image.alt = "";
-
-    const name = document.createElement("h3");
-    name.classList.add("repos__name");
-    name.textContent = repo.full_name;
-
-    const paragraph = document.createElement("p");
-    paragraph.classList.add("repos__description");
-    paragraph.textContent = repo.description;
-
-    const tag = document.createElement("div");
-    tag.classList.add("repos__tag");
-    const tags = repo.topics;
-    for (var i = 0; i < tags.length; i++) {
-      var span = document.createElement("span");
-      span.textContent = tags[i];
-
-      tag.appendChild(span);
-    }
-
-    const ellipse = document.createElement("img");
-    ellipse.classList.add("repos__ellipse");
-    ellipse.src = "img/Ellipse 210.png";
-    image.alt = "";
-
-    const date = document.createElement("p");
-    date.classList.add("repos__date");
-    date.textContent = repo.language + " Updated on " + repo.updated_at;
-
-    gridItem.appendChild(image);
-
-    gridItem.appendChild(name);
-    gridItem.appendChild(paragraph);
-    gridItem.appendChild(tag);
-    gridItem.appendChild(ellipse);
-    gridItem.appendChild(date);
-
-    container.appendChild(gridItem);
-  }
-  return container;
+function repoTag(tag) {
+  return `
+  <div class="tag">${tag}</div>
+  `;
 }
