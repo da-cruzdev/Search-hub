@@ -325,3 +325,35 @@ body {
   font-size: 5rem;
   align-items: center;
   justify-content: center; }
+
+.userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+  margin-left: -175px; }
+  .userInfo__img {
+    margin-left: -225px;
+    position: relative; }
+    .userInfo__img .img {
+      border-radius: 50%;
+      width: 300px; }
+    .userInfo__img .reddit {
+      width: 40px;
+      height: 40px;
+      background-color: #0e68ee;
+      border-radius: 50%;
+      position: absolute;
+      left: 240px;
+      bottom: 35px; }
+  .userInfo__name {
+    margin-left: 50px; }
+    .userInfo__name .name {
+      font-weight: bold;
+      font-size: 1rem; }
+    .userInfo__name .login {
+      font-size: 0.8rem; }
+  .userInfo__bio {
+    font-size: 0.8rem;
+    width: 347px;
+    margin-left: 40px; }

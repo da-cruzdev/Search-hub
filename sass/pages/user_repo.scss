@@ -1,0 +1,46 @@
+.userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+  margin-left: -175px;
+
+  &__img {
+    margin-left: -225px;
+    position: relative;
+
+    & .img {
+      border-radius: 50%;
+      width: 300px;
+    }
+
+    & .reddit {
+      width: 40px;
+      height: 40px;
+      background-color: $color-primary;
+      border-radius: 50%;
+      position: absolute;
+      left: 240px;
+      bottom: 35px;
+    }
+  }
+
+  &__name {
+    margin-left: 50px;
+
+    & .name {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    & .login {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__bio {
+    font-size: 0.8rem;
+    width: 347px;
+    margin-left: 40px;
+  }
+}
