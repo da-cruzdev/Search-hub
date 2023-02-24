@@ -120,6 +120,7 @@ function onPageChange(pageNumber) {
 }
 
 function createRepoGrid(repo) {
+  // console.log(repo.license.name);
   return `
   <div class="repos__item" id="${repo.id}">
     <div class="repos__heading">
@@ -133,7 +134,7 @@ function createRepoGrid(repo) {
     <div class="repos__info">
      <img src="/img/Ellipse 210.png" alt="" class="repos__ellipse"/>
      <div class="repos__lang">${repo.language || ""}</div>
-     <div class="repos__license">${repo.license.name || ""}</div>
+     <div class="repos__license">${repo.license ? repo.license.name : ""}</div>
      <div class="repos__date">Updated on ${repo.updated_at}</div>
     </div>
   </div>`;
@@ -141,6 +142,6 @@ function createRepoGrid(repo) {
 
 function repoTag(tag) {
   return `
-  <div class="tag">${tag}</div>
+  <div class="span">${tag}</div>
   `;
 }

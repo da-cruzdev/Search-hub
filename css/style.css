@@ -215,14 +215,19 @@ body {
     border-top: 0.1rem solid #b3b0b0;
     margin-bottom: 0.6rem; }
     .repos__item:hover {
-      background-color: #eff2f3; }
+      background-color: #f1f5f7; }
+  .repos__heading {
+    display: flex; }
   .repos__img {
     width: 1.5rem;
     float: left;
     padding-top: 1rem; }
   .repos__link {
     text-decoration: none;
-    color: #000; }
+    color: #000;
+    margin-top: 16px;
+    margin-left: 9px;
+    font-weight: bold; }
     .repos__link:hover {
       text-decoration: underline; }
   .repos__name {
@@ -231,30 +236,47 @@ body {
   .repos__description {
     width: 70%;
     font-size: 0.9rem;
-    padding-top: 0.8rem;
+    /* padding-top: 0.5rem; */
     margin-left: 2rem;
     color: #b3b0b0; }
   .repos__ellipse {
-    width: 0.9rem;
+    width: 20px;
+    height: 20px;
     float: left;
     position: relative;
-    top: 12px; }
+    top: 10px; }
   .repos__date {
-    padding-top: 0.8rem;
+    /* padding-top: 0.8rem; */
     font-size: 1rem;
     padding-left: 2rem;
-    color: #b3b0b0; }
+    color: #b3b0b0;
+    margin-top: 14px; }
   .repos__tag {
-    margin-top: 0.8rem; }
-    .repos__tag span {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-left: 20px; }
+    .repos__tag .span {
       margin-right: 0.5rem;
-      margin-bottom: 0.3rem;
+      /* margin-bottom: 0.3rem; */
       font-size: 0.8rem;
       background-color: #b3b0b0;
       font-weight: bold;
       padding: 0.3rem;
       border-radius: 1rem; }
+  .repos__info {
+    display: flex;
+    margin-left: 2px;
+    /* justify-content: space-between; */
+    color: #b3b0b0; }
+  .repos__lang {
+    margin-top: 14px;
+    margin-left: 6px; }
+  .repos__license {
+    margin-top: 14px;
+    margin-left: 20px; }
   .repos__count {
     font-size: 1.3rem;
-    margin-bottom: 1rem;
-    font-style: italic; }
+    margin-bottom: 7px;
+    font-style: italic;
+    margin-left: 30px; }
