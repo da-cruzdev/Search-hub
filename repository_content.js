@@ -83,7 +83,7 @@ function userRepoName() {
   return `
   <div class="userNameRepo">
   <img src="/img/_OBJECTS.png" alt="">
-  <div class="repoName"><a href="">${username}</a>/${repo}</div>
+  <div class="repoName"><a href="">${username}</a>/${repo.split("/")[1]}</div>
   <div class="public">public</div>
 </div>`;
 }
@@ -107,8 +107,9 @@ function fileBox(name, type, size) {
   <div class="iconName">
   <img src="/img/${fileType}" alt="" />
   <div class="fileName">${name}</div>
+  <div class="size">${fileSize}</div>
 </div>
-<div class="size">${fileSize}</div>`;
+`;
 }
 
 function formatSize(sizeInBytes) {

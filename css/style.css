@@ -177,34 +177,72 @@ body {
   color: #b3b0b0; }
 
 .content {
-  width: 65%;
-  margin: 5rem auto;
-  margin-top: 15rem; }
-  .content__item {
-    margin-top: -1px;
-    font-size: 1rem;
-    border: 0.15rem solid #b3b0b0;
-    border-radius: 1px;
+  width: 75%;
+  margin: 5rem auto; }
+  .content__user {
+    margin-top: -2rem; }
+    .content__user .userNameRepo {
+      display: flex; }
+      .content__user .userNameRepo img {
+        width: 1.2rem;
+        margin-top: 3px; }
+      .content__user .userNameRepo .repoName {
+        margin-left: 5px;
+        font-size: 1.2rem; }
+        .content__user .userNameRepo .repoName a {
+          text-decoration: none;
+          font-weight: bold;
+          color: #000; }
+          .content__user .userNameRepo .repoName a:hover {
+            text-decoration: underline; }
+      .content__user .userNameRepo .public {
+        border-radius: 21px;
+        text-align: center;
+        padding-top: 2px;
+        background-color: #0e68ee;
+        font-size: 1rem;
+        color: #fff;
+        margin-left: 29px;
+        margin-top: 4px;
+        height: 18px;
+        width: 66px; }
+  .content__file {
+    border: 1px solid #b3b0b0;
+    margin-top: 50px;
+    border-radius: 5px; }
+    .content__file .userBox {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      height: 80px; }
+      .content__file .userBox img {
+        width: 100px;
+        border-radius: 50%;
+        padding: 20px; }
+      .content__file .userBox a {
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold; }
+        .content__file .userBox a:hover {
+          text-decoration: underline; }
+  .content .iconName {
     display: flex;
     align-items: center;
-    height: 5rem;
-    position: relative; }
-  .content__img {
-    width: 3rem;
-    float: left;
-    margin-left: 1rem; }
-    .content__img--file {
-      width: 1.5rem;
-      margin-left: 1.5rem; }
-  .content__name {
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
-    position: absolute;
-    left: 3.4rem; }
-  .content__size {
-    position: absolute;
-    right: 1rem; }
+    height: 80px; }
+    .content .iconName img {
+      width: 35px;
+      height: 47px;
+      /* position: absolute; */
+      margin-left: 28px; }
+    .content .iconName .fileName {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-left: 10px; }
+    .content .iconName .size {
+      font-size: 1rem;
+      position: absolute;
+      right: 190px; }
 
 .repos {
   width: 80%;

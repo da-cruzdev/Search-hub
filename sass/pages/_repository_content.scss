@@ -1,39 +1,100 @@
 .content {
-  width: 65%;
+  width: 75%;
   margin: 5rem auto;
-  margin-top: 15rem;
 
-  &__item {
-    margin-top: -1px;
-    font-size: 1rem;
-    border: 0.15rem solid #b3b0b0;
-    border-radius: 1px;
-    display: flex;
-    align-items: center;
-    height: 5rem;
-    position: relative;
-  }
-  &__img {
-    width: 3rem;
-    float: left;
-    margin-left: 1rem;
+  &__user {
+    margin-top: -2rem;
 
-    &--file {
-      width: 1.5rem;
-      margin-left: 1.5rem;
+    & .userNameRepo {
+      display: flex;
+
+      & img {
+        width: 1.2rem;
+        margin-top: 3px;
+      }
+
+      & .repoName {
+        margin-left: 5px;
+        font-size: 1.2rem;
+
+        & a {
+          text-decoration: none;
+          font-weight: bold;
+          color: #000;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      & .public {
+        border-radius: 21px;
+        text-align: center;
+        padding-top: 2px;
+        background-color: #0e68ee;
+        font-size: 1rem;
+        color: #fff;
+        margin-left: 29px;
+        margin-top: 4px;
+        height: 18px;
+        width: 66px;
+      }
     }
   }
 
-  &__name {
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
-    position: absolute;
-    left: 3.4rem;
+  &__file {
+    border: 1px solid $color-gray;
+    margin-top: 50px;
+    border-radius: 5px;
+
+    & .userBox {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      height: 80px;
+
+      & img {
+        width: 100px;
+        border-radius: 50%;
+        padding: 20px;
+      }
+
+      & a {
+        font-size: 1.2rem;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
-  &__size {
-    position: absolute;
-    right: 1rem;
+  & .iconName {
+    display: flex;
+    align-items: center;
+    height: 80px;
+
+    & img {
+      width: 35px;
+      height: 47px;
+      /* position: absolute; */
+      margin-left: 28px;
+    }
+
+    & .fileName {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    & .size {
+      font-size: 1rem;
+      position: absolute;
+      right: 190px;
+    }
   }
 }
