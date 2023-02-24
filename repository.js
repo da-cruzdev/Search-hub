@@ -65,41 +65,62 @@ function createPaginationButtons(currentPage, totalPages, onPageChange) {
 }
 
 async function showGitHubReposTable() {
-  const data = await getGithubRepos(currentPage, perPage);
-  console.log(data);
+  const loadingMessage = document.getElementById("loading-message");
+  loadingMessage.style.display = "flex";
 
-  const repos = data.items;
-  document.querySelector(
-    ".repos__count"
-  ).innerHTML = `${data.total_count} repositories results`;
+  try {
+    const data = await getGithubRepos(currentPage, perPage);
+    console.log(data);
 
-  repos.forEach((repo) => {
-    console.log(repo);
-    document.querySelector(".repos").innerHTML += createRepoGrid(repo);
-    if (repo.topics) {
-      repo.topics.forEach((el) => {
-        document
-          .getElementById(`${repo.id}`)
-          .querySelector(`.repos__tag`).innerHTML += repoTag(el);
-      });
+    loadingMessage.style.display = "none";
+
+    if (data.total_count == undefined) {
+      document.querySelector(
+        ".repos__count"
+      ).innerHTML = `No repositories found.`;
+    } else {
+      document.querySelector(
+        ".repos__count"
+      ).innerHTML = `${data.total_count} repositories results`;
     }
 
-    // console.log(document.getElementById(`${repo.id}`));
-  });
-  //  = content;
+    const repos = data.items;
 
-  const totalPages = Math.ceil(data.total_count / perPage);
-  const paginationContainer = createPaginationButtons(
-    currentPage,
-    totalPages,
-    onPageChange
-  );
-  const existingPaginationContainer =
-    document.querySelector(".pagination__btn");
-  if (existingPaginationContainer) {
-    existingPaginationContainer.replaceWith(paginationContainer);
-  } else {
-    document.querySelector(".section-repos").appendChild(paginationContainer);
+    repos.forEach((repo) => {
+      console.log(repo);
+      document.querySelector(".repos").innerHTML += createRepoGrid(repo);
+      if (repo.topics) {
+        repo.topics.forEach((el) => {
+          document
+            .getElementById(`${repo.id}`)
+            .querySelector(`.repos__tag`).innerHTML += repoTag(el);
+        });
+      }
+    });
+
+    const totalPages = Math.ceil(data.total_count / perPage);
+    const paginationContainer = createPaginationButtons(
+      currentPage,
+      totalPages,
+      onPageChange
+    );
+    const existingPaginationContainer =
+      document.querySelector(".pagination__btn");
+    if (existingPaginationContainer) {
+      existingPaginationContainer.replaceWith(paginationContainer);
+    } else {
+      document.querySelector(".section-repos").appendChild(paginationContainer);
+    }
+
+    // Effacez le message d'erreur s'il y en avait un
+    errorContainer.innerHTML = "";
+  } catch (error) {
+    console.log(error.message);
+    if (error.message == "Failed to fetch") {
+      // document.querySelector(".repos__count").innerHTML = "";
+      loadingMessage.innerHTML =
+        "Please check your internet connection and try again.";
+    }
   }
 }
 

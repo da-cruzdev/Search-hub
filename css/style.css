@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::after,
 *::before {
@@ -33,7 +34,7 @@ body {
     color: #fff; }
   .navbar__search {
     margin-right: -3rem;
-    width: 30%;
+    width: 155%;
     position: relative; }
     .navbar__search input {
       border-radius: 5rem;
@@ -280,3 +281,10 @@ body {
     margin-bottom: 7px;
     font-style: italic;
     margin-left: 30px; }
+
+/* Masquer le message de chargement au départ */
+#loading-message {
+  display: none;
+  font-size: 5rem;
+  align-items: center;
+  justify-content: center; }
