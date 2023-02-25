@@ -44,3 +44,96 @@
     margin-left: 40px;
   }
 }
+
+.userRepo {
+  width: 85%;
+  margin: 5rem auto;
+
+  &__item {
+    font-size: 1rem;
+    border-bottom: 0.1rem solid $color-gray;
+    margin-bottom: 0.6rem;
+
+    &:hover {
+      background-color: rgb(241, 245, 247);
+    }
+  }
+  &__heading {
+    display: flex;
+  }
+
+  &__img {
+    width: 1.5rem;
+    float: left;
+    padding-top: 1rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #000;
+    /* margin-top: 16px; */
+    /* margin-left: 9px; */
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__name {
+    padding-top: 0.9rem;
+    padding-left: 0.5rem;
+  }
+
+  &__description {
+    width: 70%;
+    font-size: 0.9rem;
+    /* padding-top: 0.5rem; */
+    margin-left: 2rem;
+    margin-top: 6px;
+    color: #b3b0b0;
+  }
+
+  &__ellipse {
+    width: 15px;
+    height: 15px;
+    /* float: left; */
+    /* position: relative; */
+    /* top: 10px; */
+    margin-left: 19px;
+    margin-top: 2px;
+  }
+
+  &__lang {
+    margin-left: 3px;
+    margin-top: 3px;
+    color: $color-gray;
+  }
+
+  &__date {
+    font-size: 0.9rem;
+    /* padding-left: 14px; */
+    margin-left: 22px;
+    color: #b3b0b0;
+    margin-top: 4px;
+  }
+
+  &__tag {
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+
+    .span {
+      margin-right: 0.5rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.8rem;
+      background-color: #b3b0b0;
+      font-weight: bold;
+      padding: 2px;
+      border-radius: 1rem;
+    }
+  }
+}
