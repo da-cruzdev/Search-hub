@@ -111,16 +111,29 @@
   font-size: 2rem;
   /* align-items: center; */
   /* justify-content: center; */
-  height: 100vh;
+  height: 20vh;
   margin-top: 130px;
   width: 100%;
   text-align: center;
 
   & .errovDiv {
     color: $color-primary;
+  }
+}
+.msg__btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
 
-    & .msg__btn {
-      margin-top: 40px;
-    }
+  &-home {
+    position: absolute;
+    left: 500px;
+  }
+
+  &-refresh {
+    position: absolute;
+    right: -150px;
   }
 }

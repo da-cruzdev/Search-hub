@@ -538,14 +538,25 @@ body {
   font-size: 2rem;
   /* align-items: center; */
   /* justify-content: center; */
-  height: 100vh;
+  height: 20vh;
   margin-top: 130px;
   width: 100%;
   text-align: center; }
   .message .errovDiv {
     color: #0e68ee; }
-    .message .errovDiv .msg__btn {
-      margin-top: 40px; }
+
+.msg__btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative; }
+  .msg__btn-home {
+    position: absolute;
+    left: 500px; }
+  .msg__btn-refresh {
+    position: absolute;
+    right: -150px; }
 
 .userInfo {
   display: flex;
