@@ -73,7 +73,7 @@ body {
     align-items: center;
     color: #b3b0b0;
     width: 75%;
-    height: 3rem;
+    height: 5rem;
     border-top: 0.1px solid #b3b0b0; }
   .footer__logo {
     width: 10rem; }
@@ -203,7 +203,7 @@ body {
         background-color: #0e68ee;
         font-size: 1rem;
         color: #fff;
-        margin-left: 29px;
+        margin-left: 16px;
         margin-top: 4px;
         height: 18px;
         width: 66px; }
@@ -219,7 +219,8 @@ body {
       .content__file .userBox img {
         width: 100px;
         border-radius: 50%;
-        padding: 20px; }
+        padding: 20px;
+        margin-left: 12px; }
       .content__file .userBox a {
         font-size: 1.2rem;
         text-decoration: none;
@@ -320,11 +321,13 @@ body {
   .repos__license {
     margin-top: 14px;
     margin-left: 20px; }
-  .repos__count {
-    font-size: 1.3rem;
-    margin-bottom: 7px;
-    font-style: italic;
-    margin-left: 30px; }
+
+.repos__count {
+  font-size: 1.3rem;
+  font-style: italic;
+  margin-top: 4rem;
+  margin-bottom: -3rem;
+  margin-left: 13rem; }
 
 /* Masquer le message de chargement au départ */
 #loading-message {

@@ -247,9 +247,15 @@ async function showGitHubReposTable() {
     ".repos__count"
   ).innerHTML = `${data.total_count} repositories results`;
 
+  // Clear existing content
+  document.querySelector(".repos").innerHTML = "";
+
+  // Add repos to the list using insertAdjacentHTML
   repos.forEach((repo) => {
     console.log(repo);
-    document.querySelector(".repos").innerHTML += createRepoGrid(repo);
+    document
+      .querySelector(".repos")
+      .insertAdjacentHTML("beforeend", createRepoGrid(repo));
     if (repo.topics) {
       repo.topics.forEach((el) => {
         document
@@ -275,6 +281,8 @@ async function showGitHubReposTable() {
   } else {
     document.querySelector(".section-repos").appendChild(paginationContainer);
   }
+
+  // window.location.reload();
 }
 
 const perPageInput = document.getElementById("per-page");
@@ -291,6 +299,7 @@ showGitHubReposTable();
 function onPageChange(pageNumber) {
   currentPage = pageNumber;
   showGitHubReposTable();
+  // window.location.reload();
 }
 
 function createRepoGrid(repo) {
