@@ -106,9 +106,14 @@
   margin-left: 13rem;
 }
 /* Masquer le message de chargement au départ */
-#loading-message {
-  display: none;
-  font-size: 5rem;
+.message {
+  display: flex;
+  font-size: 2rem;
   align-items: center;
   justify-content: center;
+  height: 400px;
+
+  & .errovDiv {
+    color: $color-primary;
+  }
 }

@@ -22,7 +22,7 @@
       </div>
       <form action="repository.html">
         <div class="navbar__search">
-          <input type="text" id="input" name="search" />
+          <input type="text" id="input" name="search" maxlength="50" />
           <i class="fa fa-search fa--nav"></i>
         </div>
       </form>
@@ -31,8 +31,30 @@
       <section class="section-repos">
         <div class="row">
           <div class="repos__count"></div>
-          <div class="repos">
-            <div id="loading-message">En cours de chargement...</div>
+          <div class="repos"></div>
+          <div class="containAll">
+            <div class="containLoader">
+              <div class="circleGroup circle-1"></div>
+              <div class="circleGroup circle-2"></div>
+              <div class="circleGroup circle-3"></div>
+              <div class="circleGroup circle-4"></div>
+              <div class="circleGroup circle-5"></div>
+              <div class="circleGroup circle-6"></div>
+              <div class="circleGroup circle-7"></div>
+              <div class="circleGroup circle-8"></div>
+
+              <div class="innerText">
+                <p>loading...</p>
+              </div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="errorDiv"></div>
+            <div class="msg__btn">
+              <a href="#" class="btn btn--white btn--animated"
+                >Discover our tours</a
+              >
+            </div>
           </div>
         </div>
         <div class="pagination">
