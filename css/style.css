@@ -24,6 +24,49 @@ body {
 .u-row-small {
   max-width: 70rem; }
 
+.btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 10px;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 1rem; }
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--green {
+  background-color: #0e68ee;
+  color: #fff; }
+  .btn--green::after {
+    background-color: #0e68ee; }
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s; }
+
+.btn--animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards; }
+
 .navbar {
   background-color: #0e68ee;
   display: flex;
@@ -59,7 +102,7 @@ body {
       border-radius: 20rem;
       color: #0e68ee;
       position: absolute;
-      top: 0;
+      top: 2px;
       left: 0.1rem;
       font-size: 90%; }
 
@@ -491,13 +534,18 @@ body {
 
 /* Masquer le message de chargement au départ */
 .message {
-  display: flex;
+  display: inline-block;
   font-size: 2rem;
-  align-items: center;
-  justify-content: center;
-  height: 400px; }
+  /* align-items: center; */
+  /* justify-content: center; */
+  height: 100vh;
+  margin-top: 130px;
+  width: 100%;
+  text-align: center; }
   .message .errovDiv {
     color: #0e68ee; }
+    .message .errovDiv .msg__btn {
+      margin-top: 40px; }
 
 .userInfo {
   display: flex;
