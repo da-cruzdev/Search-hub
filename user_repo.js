@@ -19,8 +19,8 @@ async function getUserInfo() {
   return data;
 }
 
-async function getUserRepo() {
-  const url = `https://api.github.com/users/${username}/repos`;
+async function getUserRepo(pageNumber, pageSize) {
+  const url = `https://api.github.com/users/${username}/repos?page=${pageNumber}&per_page=${pageSize}`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -35,13 +35,63 @@ async function showUserInfo() {
   document.querySelector(".userInfo").innerHTML = userInfoBox(userInfo);
 }
 
+function createPaginationButtons(currentPage, totalPages, onPageChange) {
+  window.history.pushState({}, null, `?search=${search}&page=${currentPage}`);
+
+  const paginationContainer = document.createElement("div");
+  paginationContainer.classList.add("pagination__btn");
+
+  const firstPage = Math.max(1, currentPage - 5);
+  const lastPage = Math.min(totalPages, firstPage + 9);
+
+  const previousButton = document.createElement("button");
+  previousButton.innerText = "<";
+  previousButton.disabled = currentPage === 1;
+  previousButton.classList.add("previous-button");
+  previousButton.addEventListener("click", () => {
+    onPageChange(currentPage - 1);
+  });
+  paginationContainer.appendChild(previousButton);
+
+  for (let i = firstPage; i <= lastPage; i++) {
+    const pageNumberButton = document.createElement("button");
+    pageNumberButton.innerText = i.toString();
+    pageNumberButton.classList.add("page-number-button");
+    pageNumberButton.disabled = i === currentPage;
+    pageNumberButton.setAttribute("data-page-number", i.toString());
+    pageNumberButton.addEventListener("click", (event) => {
+      const pageNumber = parseInt(
+        event.target.getAttribute("data-page-number"),
+        10
+      );
+      onPageChange(pageNumber);
+    });
+    paginationContainer.appendChild(pageNumberButton);
+  }
+
+  const nextButton = document.createElement("button");
+  nextButton.innerText = ">";
+  nextButton.disabled = currentPage === totalPages;
+  nextButton.classList.add("next-button");
+  nextButton.addEventListener("click", () => {
+    onPageChange(currentPage + 1);
+  });
+  paginationContainer.appendChild(nextButton);
+
+  return paginationContainer;
+}
+
 async function showUserRepo() {
-  const userRepo = await getUserRepo();
-  //   console.log(userRepo);
+  const userRepo = await getUserRepo(currentPage, perPage);
+  const totalRepo = userRepo.length;
+
+  document.querySelector(".userRepo").innerHTML = "";
 
   userRepo.forEach((repo) => {
-    console.log(repo);
-    document.querySelector(".userRepo").innerHTML += createRepoBox(repo);
+    document
+      .querySelector(".userRepo")
+      .insertAdjacentHTML("beforeend", createRepoBox(repo));
+
     if (repo.topics) {
       repo.topics.forEach((el) => {
         document
@@ -53,11 +103,43 @@ async function showUserRepo() {
     }
   });
 
+  const totalPages = Math.ceil(totalRepo / perPage);
+  const paginationContainer = createPaginationButtons(
+    currentPage,
+    totalPages,
+    onPageChange
+  );
+  const existingPaginationContainer =
+    document.querySelector(".pagination__btn");
+  if (existingPaginationContainer) {
+    existingPaginationContainer.replaceWith(paginationContainer);
+  } else {
+    document
+      .querySelector(".userRepo-section")
+      .appendChild(paginationContainer);
+  }
+
   //   document.querySelector(".userRepo").innerHTML = createRepoBox(userInfo);
 }
 
+const perPageInput = document.getElementById("per-page");
+perPageInput.addEventListener("change", () => {
+  const newPerPage = parseInt(perPageInput.value, 10);
+  if (!isNaN(newPerPage) && newPerPage >= 5) {
+    perPage = newPerPage;
+    currentPage = 1;
+    showUserRepo();
+  }
+});
+
 showUserInfo();
 showUserRepo();
+
+function onPageChange(pageNumber) {
+  currentPage = pageNumber;
+  showUserRepo();
+  // window.location.reload();
+}
 
 function repoDiv() {
   return `<div class="repoNameDiv">
