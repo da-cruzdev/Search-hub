@@ -45,9 +45,34 @@
   }
 }
 
+.userRepoName {
+  width: 85%;
+  margin: 5rem auto 0;
+
+  & .repoNameDiv {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid $color-gray;
+  }
+
+  & img {
+    width: 1.2rem;
+    margin-left: 23px;
+    border-bottom: solid;
+  }
+
+  & .repo {
+    font-size: 1rem;
+    font-weight: 600;
+    padding-left: 7px;
+    border-bottom: solid;
+  }
+}
+
 .userRepo {
   width: 85%;
   margin: 5rem auto;
+  margin-top: 40px;
 
   &__item {
     font-size: 1rem;

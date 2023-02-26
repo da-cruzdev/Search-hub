@@ -59,6 +59,16 @@ async function showUserRepo() {
 showUserInfo();
 showUserRepo();
 
+function repoDiv() {
+  return `<div class="repoNameDiv">
+    <img src="/img/_OBJECTS.png" alt="" />
+    <div class="repo">Repositories</div>
+  </div>
+  `;
+}
+
+document.querySelector(".userRepoName").innerHTML = repoDiv();
+
 function userInfoBox(user) {
   return ` 
   <div class="userInfo__img">

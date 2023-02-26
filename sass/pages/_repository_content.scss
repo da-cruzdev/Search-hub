@@ -78,11 +78,18 @@
     align-items: center;
     height: 80px;
 
-    & img {
-      width: 35px;
-      height: 47px;
+    & .folder {
+      width: 43px;
+      height: 50px;
       /* position: absolute; */
       margin-left: 28px;
+    }
+
+    & .file {
+      width: 27px;
+      height: 33px;
+      /* position: absolute; */
+      margin-left: 34px;
     }
 
     & .fileName {
@@ -92,7 +99,7 @@
     }
 
     & .size {
-      font-size: 1rem;
+      font-size: 0.9rem;
       position: absolute;
       right: 190px;
     }

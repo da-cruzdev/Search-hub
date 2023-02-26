@@ -20,7 +20,10 @@ async function getRepoContent() {
 async function showRepoContent() {
   const data = await getRepoContent();
 
+  filterFiles(data);
+
   data.forEach((el) => {
+    console.log(el);
     document.querySelector(".content__file").innerHTML +=
       hr() + fileBox(el.name, el.type, el.size);
   });
@@ -105,13 +108,28 @@ function fileBox(name, type, size) {
   if (size != 0) {
     fileSize = formatSize(size);
   }
+
+  let folderClass = type == "dir" ? "folder" : "";
+  let fileClass = type == "file" ? "file" : "";
   return `
-  <div class="iconName">
-  <img src="/img/${fileType}" alt="" />
+  <div class="iconName ">
+  <img src="/img/${fileType}" class="${folderClass} ${fileClass}" alt="" />
   <div class="fileName">${name}</div>
   <div class="size">${fileSize}</div>
 </div>
 `;
+}
+
+function filterFiles(data) {
+  return data.sort((a, b) => {
+    if (a.type === b.type) {
+      return a.name.localeCompare(b.name);
+    } else if (a.type === "dir") {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
 }
 
 function formatSize(sizeInBytes) {
