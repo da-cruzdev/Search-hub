@@ -249,9 +249,14 @@ async function showGitHubReposTable() {
     loader.style.display = "none";
 
     const repos = data.items;
-    document.querySelector(
-      ".repos__count"
-    ).innerHTML = `${data.total_count} repositories results`;
+    if (data.total_count !== undefined || 0) {
+      document.querySelector(
+        ".repos__count"
+      ).innerHTML = `${data.total_count} repositories results`;
+    } else {
+      document.querySelector(".errorDiv").textContent =
+        "Sorry, No repository found.";
+    }
 
     // Clear existing content
     document.querySelector(".repos").innerHTML = "";
@@ -292,6 +297,8 @@ async function showGitHubReposTable() {
       loader.style.display = "none";
       document.querySelector(".errorDiv").textContent =
         "Please check your internet connection and try again.";
+      document.getElementById("per-page").style.display = "none";
+      document.querySelector(".msg__btn").style.display = "flex";
     }
   }
 }
@@ -313,6 +320,11 @@ function onPageChange(pageNumber) {
   // window.location.reload();
 }
 
+function formatDate(date) {
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  return new Intl.DateTimeFormat("fr-FR", options).format(date);
+}
+
 function createRepoGrid(repo) {
   // console.log(repo.license.name);
   return `
@@ -329,7 +341,10 @@ function createRepoGrid(repo) {
      <img src="/img/Ellipse 210.png" alt="" class="repos__ellipse"/>
      <div class="repos__lang">${repo.language || ""}</div>
      <div class="repos__license">${repo.license ? repo.license.name : ""}</div>
-     <div class="repos__date">Updated on ${repo.updated_at}</div>
+     <div class="repos__date">Updated on ${formatDate(
+       new Date(repo.updated_at)
+     )}</div>
+
     </div>
   </div>`;
 }
