@@ -29,10 +29,24 @@ async function getUserRepo(pageNumber, pageSize) {
 }
 
 async function showUserInfo() {
-  const userInfo = await getUserInfo();
-  console.log(userInfo);
+  const loader = document.querySelector(".containAll");
+  loader.style.display = "flex";
 
-  document.querySelector(".userInfo").innerHTML = userInfoBox(userInfo);
+  try {
+    const userInfo = await getUserInfo();
+    console.log(userInfo);
+
+    document.querySelector(".userInfo").innerHTML = userInfoBox(userInfo);
+    loader.style.display = "none";
+  } catch (error) {
+    if (error.message == "Failed to fetch") {
+      loader.style.display = "none";
+      document.querySelector(".errorDiv").textContent =
+        "Please check your internet connection and try again.";
+      document.getElementById("per-page").style.display = "none";
+      document.querySelector(".msg__btn").style.display = "flex";
+    }
+  }
 }
 
 function createPaginationButtons(currentPage, totalPages, onPageChange) {
@@ -82,43 +96,57 @@ function createPaginationButtons(currentPage, totalPages, onPageChange) {
 }
 
 async function showUserRepo() {
-  const userRepo = await getUserRepo(currentPage, perPage);
-  const totalRepo = userRepo.length;
+  const loader = document.querySelector(".containAll");
+  loader.style.display = "flex";
 
-  document.querySelector(".userRepo").innerHTML = "";
+  try {
+    const userRepo = await getUserRepo(currentPage, perPage);
+    const totalRepo = userRepo.length;
 
-  userRepo.forEach((repo) => {
-    document
-      .querySelector(".userRepo")
-      .insertAdjacentHTML("beforeend", createRepoBox(repo));
+    loader.style.display = "none";
 
-    if (repo.topics) {
-      repo.topics.forEach((el) => {
-        document
-          .getElementById(`${repo.id}`)
-          .querySelector(`.userRepo__tag`).innerHTML += repoTag(
-          el.split("-")[0] || el
-        );
-      });
+    document.querySelector(".userRepo").innerHTML = "";
+
+    userRepo.forEach((repo) => {
+      document
+        .querySelector(".userRepo")
+        .insertAdjacentHTML("beforeend", createRepoBox(repo));
+
+      if (repo.topics) {
+        repo.topics.forEach((el) => {
+          document
+            .getElementById(`${repo.id}`)
+            .querySelector(`.userRepo__tag`).innerHTML += repoTag(
+            el.split("-")[0] || el
+          );
+        });
+      }
+    });
+
+    const totalPages = Math.ceil(totalRepo / perPage);
+    const paginationContainer = createPaginationButtons(
+      currentPage,
+      totalPages,
+      onPageChange
+    );
+    const existingPaginationContainer =
+      document.querySelector(".pagination__btn");
+    if (existingPaginationContainer) {
+      existingPaginationContainer.replaceWith(paginationContainer);
+    } else {
+      document
+        .querySelector(".userRepo-section")
+        .appendChild(paginationContainer);
     }
-  });
-
-  const totalPages = Math.ceil(totalRepo / perPage);
-  const paginationContainer = createPaginationButtons(
-    currentPage,
-    totalPages,
-    onPageChange
-  );
-  const existingPaginationContainer =
-    document.querySelector(".pagination__btn");
-  if (existingPaginationContainer) {
-    existingPaginationContainer.replaceWith(paginationContainer);
-  } else {
-    document
-      .querySelector(".userRepo-section")
-      .appendChild(paginationContainer);
+  } catch (error) {
+    if (error.message == "Failed to fetch") {
+      loader.style.display = "none";
+      document.querySelector(".errorDiv").textContent =
+        "Please check your internet connection and try again.";
+      document.getElementById("per-page").style.display = "none";
+      document.querySelector(".msg__btn").style.display = "flex";
+    }
   }
-
   //   document.querySelector(".userRepo").innerHTML = createRepoBox(userInfo);
 }
 
@@ -139,6 +167,11 @@ function onPageChange(pageNumber) {
   currentPage = pageNumber;
   showUserRepo();
   // window.location.reload();
+}
+
+function formatDate(date) {
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  return new Intl.DateTimeFormat("fr-FR", options).format(date);
 }
 
 function repoDiv() {
@@ -176,7 +209,9 @@ function createRepoBox(repo) {
         </a>
            <img src="/img/Ellipse 210.png" alt="" class="userRepo__ellipse"/>
            <div class="userRepo__lang">${repo.language || ""}</div>
-           <div class="userRepo__date">Updated on ${repo.updated_at}</div>
+           <div class="userRepo__date">Updated on ${formatDate(
+             new Date(repo.updated_at)
+           )}</div>
       </div>
       <div class="userRepo__description">${repo.description || ""}</div>
       <div class="userRepo__tag"></div>
