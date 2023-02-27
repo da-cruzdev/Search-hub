@@ -85,8 +85,8 @@ return container;
 function userRepoName() {
   return `
   <div class="userNameRepo">
-  <img src="/img/_OBJECTS.png" alt="">
-  <div class="repoName"><a href="user_repo.html?username=${username}&search=${search}">${username}</a>/${
+  <img src="../../img/_OBJECTS.png" alt="">
+  <div class="repoName"><a href="../user_repo/user_repo.html?username=${username}&search=${search}">${username}</a>/${
     repo.split("/")[1]
   }</div>
   <div class="public">public</div>
@@ -97,7 +97,7 @@ document.querySelector(".content__user").innerHTML = userRepoName();
 function userBox() {
   return `<div class="userBox">
   <img src="https://avatars.githubusercontent.com/${username}" alt="" />
-  <a href="user_repo.html?username=${username}&search=${search}">${username}</a>
+  <a href="../user_repo/user_repo.html?username=${username}&search=${search}">${username}</a>
 </div>`;
 }
 document.querySelector(".content__file").innerHTML = userBox();

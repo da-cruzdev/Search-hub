@@ -176,7 +176,7 @@ function formatDate(date) {
 
 function repoDiv() {
   return `<div class="repoNameDiv">
-    <img src="/img/_OBJECTS.png" alt="" />
+    <img src="../../img/_OBJECTS.png" alt="" />
     <div class="repo">Repositories</div>
   </div>
   `;
@@ -203,7 +203,7 @@ function createRepoBox(repo) {
   return `
     <div class="userRepo__item" id="${repo.id}">
       <div class="userRepo__heading">
-        <a href="repository_content.html?search=${search}&username=${
+        <a href="../repository_content/repository_content.html?search=${search}&username=${
     repo.name
   }&repo=${repo.full_name}" class="userRepo__link"">${repo.name}
         </a>

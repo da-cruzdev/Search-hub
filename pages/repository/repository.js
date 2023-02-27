@@ -299,6 +299,10 @@ async function showGitHubReposTable() {
         "Please check your internet connection and try again.";
       document.getElementById("per-page").style.display = "none";
       document.querySelector(".msg__btn").style.display = "flex";
+    } else if (error) {
+      document.querySelector(".errorDiv").textContent =
+        "Sorry, No repository found.";
+      document.getElementById("per-page").style.display = "none";
     }
   }
 }
@@ -330,15 +334,15 @@ function createRepoGrid(repo) {
   return `
   <div class="repos__item" id="${repo.id}">
     <div class="repos__heading">
-      <img src="/img/_OBJECTS.png" alt="" class="repos__img" />
-      <a href="repository_content.html?search=${search}&username=${
+    <img src="../../img/_OBJECTS.png" alt="" class="repos__img" />
+      <a href="../repository_content/repository_content.html?search=${search}&username=${
     repo.full_name.split("/")[0]
   }&repo=${repo.full_name}" class="repos__link"">${repo.full_name}</a>
     </div>
     <div class="repos__description">${repo.description || ""}</div>
     <div class="repos__tag"></div>
     <div class="repos__info">
-     <img src="/img/Ellipse 210.png" alt="" class="repos__ellipse"/>
+     <img src="../../img/Ellipse 210.png" alt="" class="repos__ellipse"/>
      <div class="repos__lang">${repo.language || ""}</div>
      <div class="repos__license">${repo.license ? repo.license.name : ""}</div>
      <div class="repos__date">Updated on ${formatDate(

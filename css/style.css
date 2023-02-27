@@ -529,12 +529,12 @@ body {
   font-size: 1.3rem;
   font-style: italic;
   margin-top: 4rem;
-  margin-bottom: -3rem;
-  margin-left: 13rem; }
+  margin-bottom: -4rem;
+  margin-left: 10rem; }
 
 /* Masquer le message de chargement au départ */
 .message {
-  display: inline-block;
+  display: none;
   font-size: 2rem;
   /* align-items: center; */
   /* justify-content: center; */
