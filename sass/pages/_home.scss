@@ -37,9 +37,17 @@
   position: absolute;
   font-size: 2.5rem;
   color: $color-primary;
-
   right: -9px;
   top: 81px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(1.1);
+  }
 }
 
 .search__text {
