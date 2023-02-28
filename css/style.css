@@ -159,9 +159,9 @@ body {
   display: flex;
   margin-right: 2rem; }
   .pagination__btn {
-    width: 40%;
+    width: 23%;
     position: relative;
-    right: -45rem; }
+    right: -52rem; }
     .pagination__btn button {
       border: transparent;
       border-radius: 20.1px;
