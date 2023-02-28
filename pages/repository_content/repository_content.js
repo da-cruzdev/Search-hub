@@ -1,10 +1,32 @@
 const urlParams = new URLSearchParams(window.location.search);
 const input = document.getElementById("input");
 
+function validateForm() {
+  var searchField = input.value;
+  if (searchField === "") {
+    alert("Veuillez entrer un terme de recherche");
+    return false;
+  } else if (searchField.includes("   ")) {
+    alert("Veuillez supprimer les espaces");
+    return false;
+  } else if (searchField.length > 50) {
+    alert("Le terme de recherche ne doit pas dépasser 50 caractères");
+    return false;
+  } else {
+    return true;
+  }
+}
+
+document.querySelector("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (validateForm()) {
+    this.submit();
+  }
+});
+
 const search = urlParams.get("search");
 const repo = urlParams.get("repo");
 const username = urlParams.get("username");
-console.log(username);
 
 input.setAttribute("value", `${search}`);
 
@@ -13,74 +35,31 @@ async function getRepoContent() {
 
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data);
+
   return data;
 }
 
 async function showRepoContent() {
-  const data = await getRepoContent();
+  const loader = document.querySelector(".containAll");
+  loader.style.display = "flex";
 
-  filterFiles(data);
+  try {
+    const data = await getRepoContent();
 
-  data.forEach((el) => {
-    console.log(el);
-    document.querySelector(".content__file").innerHTML +=
-      hr() + fileBox(el.name, el.type, el.size);
-  });
+    loader.style.display = "none";
+
+    filterFiles(data);
+
+    data.forEach((el) => {
+      document.querySelector(".content__file").innerHTML +=
+        hr() + fileBox(el.name, el.type, el.size);
+    });
+  } catch (error) {
+    document.querySelector(".content__file").innerHTML += hr() + emptyRepo();
+  }
 }
 
 showRepoContent();
-
-/*function createContentGrid(repos) {
-const page = console.log();
-const container = document.createElement("div");
-container.classList.add("repocontent");
-const user = document.createElement("div");
-user.classList.add("user__info");
-const image = document.createElement("img");
-image.classList.add("user__img");
-image.src = `https://avatars.githubusercontent.com/${username};`;
-const name = document.createElement("a");
-name.classList.add("user__name");
-name.href = `https://api.github.com/users/${username}/repos`;
-name.textContent = `${username}`;
-user.appendChild(image);
-user.appendChild(name);
-container.prepend(user);
-
-for (const repo of repos) {
-  const gridItem = document.createElement("div");
-  gridItem.classList.add("repocontent__item");
-
-  if (repo.type === "dir") {
-    const image = document.createElement("img");
-    image.classList.add("repocontent__img");
-    image.src = "img/folder.png";
-    image.alt = "";
-    gridItem.appendChild(image);
-  } else {
-    const image = document.createElement("img");
-    image.classList.add("repocontent__img--file");
-    image.src = "img/Vector.png";
-    image.alt = "";
-    gridItem.appendChild(image);
-  }
-
-  const name = document.createElement("h5");
-  name.classList.add("repocontent__name");
-  name.textContent = repo.name;
-
-  gridItem.appendChild(name);
-
-  const size = document.createElement("p");
-  size.classList.add("repocontent__size");
-  size.textContent = repo.size;
-  gridItem.appendChild(size);
-
-  container.appendChild(gridItem);
-}
-return container;
-}*/
 
 function userRepoName() {
   return `
@@ -101,6 +80,10 @@ function userBox() {
 </div>`;
 }
 document.querySelector(".content__file").innerHTML = userBox();
+
+function emptyRepo() {
+  return `<div class="userBox box-empty"><div>This repository is empty.</div></div>`;
+}
 
 function fileBox(name, type, size) {
   let fileType = type == "file" ? "file.png" : "folder.png";

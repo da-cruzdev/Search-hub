@@ -1,12 +1,34 @@
 let currentPage = 1;
-let perPage = 10;
+let perPage = 5;
 
 const urlParams = new URLSearchParams(window.location.search);
 const input = document.getElementById("input");
 
+function validateForm() {
+  var searchField = input.value;
+  if (searchField === "") {
+    alert("Veuillez entrer un terme de recherche");
+    return false;
+  } else if (searchField.includes("   ")) {
+    alert("Veuillez supprimer les espaces");
+    return false;
+  } else if (searchField.length > 50) {
+    alert("Le terme de recherche ne doit pas dépasser 50 caractères");
+    return false;
+  } else {
+    return true;
+  }
+}
+
+document.querySelector("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  if (validateForm()) {
+    this.submit();
+  }
+});
+
 const search = urlParams.get("search");
 let username = urlParams.get("username");
-console.log(search);
 
 input.setAttribute("value", `${search}`);
 
@@ -15,7 +37,7 @@ async function getUserInfo() {
 
   const response = await fetch(url);
   const data = await response.json();
-  //   console.log(data);
+
   return data;
 }
 
@@ -24,7 +46,7 @@ async function getUserRepo(pageNumber, pageSize) {
 
   const response = await fetch(url);
   const data = await response.json();
-  //   console.log(data);
+
   return data;
 }
 
@@ -34,7 +56,6 @@ async function showUserInfo() {
 
   try {
     const userInfo = await getUserInfo();
-    console.log(userInfo);
 
     document.querySelector(".userInfo").innerHTML = userInfoBox(userInfo);
     loader.style.display = "none";
@@ -55,8 +76,8 @@ function createPaginationButtons(currentPage, totalPages, onPageChange) {
   const paginationContainer = document.createElement("div");
   paginationContainer.classList.add("pagination__btn");
 
-  const firstPage = Math.max(1, currentPage - 5);
-  const lastPage = Math.min(totalPages, firstPage + 9);
+  const firstPage = Math.max(1, currentPage - 2);
+  const lastPage = Math.min(totalPages, firstPage + 4);
 
   const previousButton = document.createElement("button");
   previousButton.innerText = "<";
@@ -101,7 +122,8 @@ async function showUserRepo() {
 
   try {
     const userRepo = await getUserRepo(currentPage, perPage);
-    const totalRepo = userRepo.length;
+    const infoRepo = await getUserInfo();
+    const totalRepo = infoRepo.public_repos;
 
     loader.style.display = "none";
 
@@ -141,13 +163,16 @@ async function showUserRepo() {
   } catch (error) {
     if (error.message == "Failed to fetch") {
       loader.style.display = "none";
+      document.querySelector(".userRepo").style.display = "none";
+      document.querySelector(".userRepoName").style.display = "none";
+
+      document.querySelector(".message").style.display = "inline-block";
       document.querySelector(".errorDiv").textContent =
         "Please check your internet connection and try again.";
       document.getElementById("per-page").style.display = "none";
       document.querySelector(".msg__btn").style.display = "flex";
     }
   }
-  //   document.querySelector(".userRepo").innerHTML = createRepoBox(userInfo);
 }
 
 const perPageInput = document.getElementById("per-page");
@@ -166,7 +191,6 @@ showUserRepo();
 function onPageChange(pageNumber) {
   currentPage = pageNumber;
   showUserRepo();
-  // window.location.reload();
 }
 
 function formatDate(date) {
@@ -209,7 +233,7 @@ function createRepoBox(repo) {
         </a>
            <img src="/img/Ellipse 210.png" alt="" class="userRepo__ellipse"/>
            <div class="userRepo__lang">${repo.language || ""}</div>
-           <div class="userRepo__date">Updated on ${formatDate(
+           <div class="userRepo__date">Updated on   ${formatDate(
              new Date(repo.updated_at)
            )}</div>
       </div>
