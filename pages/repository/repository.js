@@ -146,8 +146,8 @@ async function showGitHubReposTable() {
       document.querySelector(".message").style.display = "inline-block";
       document.querySelector(".errorDiv").textContent =
         "Please check your internet connection and try again.";
-      document.getElementById("pagination").style.display = "none";
       document.querySelector(".msg__btn").style.display = "flex";
+      // document.getElementById("pagination").style.display = "none";
     }
   }
 }
@@ -166,7 +166,6 @@ showGitHubReposTable();
 function onPageChange(pageNumber) {
   currentPage = pageNumber;
   showGitHubReposTable();
-  // window.location.reload();
 }
 
 function splitDescription(description) {

@@ -171,6 +171,8 @@ async function showUserRepo() {
         "Please check your internet connection and try again.";
       document.getElementById("per-page").style.display = "none";
       document.querySelector(".msg__btn").style.display = "flex";
+    } else {
+      document.querySelector(".userRepo").innerHTML = emptyBox();
     }
   }
 }
@@ -221,6 +223,10 @@ function userInfoBox(user) {
 <div class="login">${user.login}</div>
 </div>
 <div class="userInfo__bio">${user.bio || ""}</div>`;
+}
+
+function emptyBox() {
+  return `<div class="userBox box-empty"><div>This user doesn't have repositories.</div></div>`;
 }
 
 function createRepoBox(repo) {

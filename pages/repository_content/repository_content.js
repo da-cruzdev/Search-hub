@@ -30,6 +30,17 @@ const username = urlParams.get("username");
 
 input.setAttribute("value", `${search}`);
 
+async function getUserRepo() {
+  const url = `https://api.github.com/users/${username}/repos`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  document.querySelector(".content__user").innerHTML = userRepoName(data);
+  return data;
+}
+getUserRepo();
+
 async function getRepoContent() {
   const url = `https://api.github.com/repos/${repo}/contents`;
 
@@ -61,17 +72,16 @@ async function showRepoContent() {
 
 showRepoContent();
 
-function userRepoName() {
+function userRepoName(data) {
   return `
   <div class="userNameRepo">
   <img src="../../img/_OBJECTS.png" alt="">
   <div class="repoName"><a href="../user_repo/user_repo.html?username=${username}&search=${search}">${username}</a>/${
     repo.split("/")[1]
   }</div>
-  <div class="public">public</div>
+  <div class="public">${data.language || "public"}</div>
 </div>`;
 }
-document.querySelector(".content__user").innerHTML = userRepoName();
 
 function userBox() {
   return `<div class="userBox">
